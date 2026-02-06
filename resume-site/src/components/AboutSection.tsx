@@ -9,87 +9,79 @@ import { useTheme } from "@/context/ThemeContext";
 export function AboutSection() {
   const { version } = useTheme();
 
+  // Split headline into words for staggered blur-in animation
+  const headlineWords = resumeData.about.headline.split(" ");
+
   return (
     <ContentCard>
-      <div className="flex items-start gap-4 mb-6">
-        <div 
-          className="w-10 h-10 rounded-xl flex items-center justify-center"
-          style={{ 
-            background: 'var(--accent-glow)',
+      {/* Pill-style title */}
+      <div className="mb-8">
+        <div
+          className="inline-flex items-center gap-2.5 px-4 py-2 rounded-lg"
+          style={{
+            background: "var(--accent-glow)",
+            border: "1px solid var(--accent-dim)",
           }}
         >
-          <Sparkles size={20} style={{ color: 'var(--accent)' }} />
-        </div>
-        <div>
-          <h2 
-            className="text-xl lg:text-2xl font-bold"
-            style={{ fontFamily: 'var(--font-display)' }}
+          <Sparkles size={16} style={{ color: "var(--accent)" }} />
+          <span
+            className="text-sm font-semibold tracking-wide uppercase"
+            style={{
+              color: "var(--accent)",
+              fontFamily: "var(--font-display)",
+              letterSpacing: "0.08em",
+            }}
           >
             About Me
-          </h2>
-          <p 
-            className="text-sm mt-1"
-            style={{ color: 'var(--foreground-muted)' }}
-          >
-            {resumeData.personal.yearsExperience} years of experience
-          </p>
+          </span>
         </div>
       </div>
 
-      {/* Headline */}
-      <motion.h3
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.2 }}
-        className="text-lg lg:text-xl font-semibold mb-4 leading-snug"
-        style={{ 
-          fontFamily: version === "3" ? 'var(--font-serif)' : 'var(--font-display)',
-          fontStyle: version === "3" ? 'italic' : 'normal',
+      {/* Headline — blur-in from below, word by word */}
+      <h3
+        className="text-xl lg:text-2xl font-bold mb-6 leading-snug flex flex-wrap gap-x-[0.3em] gap-y-1"
+        style={{
+          fontFamily:
+            version === "3" ? "var(--font-serif)" : "var(--font-display)",
+          fontStyle: version === "3" ? "italic" : "normal",
         }}
       >
-        {resumeData.about.headline}
-      </motion.h3>
-
-      {/* Description */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.3 }}
-        className="leading-relaxed mb-6"
-        style={{ color: 'var(--foreground-muted)' }}
-      >
-        {resumeData.about.description.split('\n')[0]}
-      </motion.p>
-
-      {/* Highlights */}
-      <div className="grid gap-2">
-        {resumeData.about.highlights.map((highlight, i) => (
-          <motion.div
+        {headlineWords.map((word, i) => (
+          <motion.span
             key={i}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 + i * 0.1 }}
-            className="flex items-center gap-3"
+            initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{
+              duration: 0.6,
+              delay: 0.15 + i * 0.045,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
+            className="inline-block"
           >
-            <div 
-              className="w-1.5 h-1.5 rounded-full"
-              style={{ 
-                background: 'var(--accent)',
-                boxShadow: version === "2" ? '0 0 8px var(--accent)' : 'none',
-              }}
-            />
-            <span 
-              className="text-sm"
-              style={{ color: 'var(--foreground-muted)' }}
-            >
-              {highlight}
-            </span>
-          </motion.div>
+            {word}
+          </motion.span>
         ))}
-      </div>
+      </h3>
+
+      {/* Description: render all paragraphs */}
+      {resumeData.about.description
+        .split("\n")
+        .map((p) => p.trim())
+        .filter(Boolean)
+        .map((para, i) => (
+          <motion.p
+            key={i}
+            initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ delay: 0.5 + i * 0.12, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="leading-relaxed text-[15px] mb-4"
+            style={{ color: "var(--foreground-muted)" }}
+          >
+            {para}
+          </motion.p>
+        ))}
     </ContentCard>
   );
 }

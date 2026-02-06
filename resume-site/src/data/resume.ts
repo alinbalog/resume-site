@@ -1,26 +1,23 @@
 export const resumeData = {
   personal: {
     name: "Alin Balog",
-    title: "Full-Stack Developer",
-    tagline: "Design-minded Full‑Stack Developer — .NET, Angular, product & UI-focused",
+    title: "Full Stack Developer",
+    tagline: "Design minded, Full Stack Developer, .NET, Angular, product focused",
     email: "alinbalog5@gmail.com",
     github: "https://github.com/alinbalog",
     linkedin: "https://linkedin.com/in/alinbalog",
     location: "Romania",
-    yearsExperience: "2+",
+    yearsExperience: "3+",
     photo: "/photo.jpg",
   },
   
   about: {
-    headline: "Crafting robust, scalable solutions for complex business challenges",
-    description: `Full-Stack Developer with 2+ years of experience modernizing enterprise applications.
-    I don't stop at Angular and .NET — I love design, implementation, and creating delightful user
-    experiences. I specialize in transforming legacy systems into modern, maintainable architectures
-    while paying close attention to UX, visual polish, and developer experience.
+    headline: "Building resilient, scalable software that makes complex systems feel simple",
+    description: `Hello there 👋 I'm Alin, a Romania based Full‑Stack Developer with 3+ years of experience building full‑stack applications.
 
-    My expertise spans DDD, CQRS, Event Sourcing, and distributed systems architecture. I'm passionate
-    about clean code, thoughtful interfaces, and leveraging AI-assisted development tools to boost
-    productivity and quality.`,
+  Curiosity drives my work: I enjoy experimenting with new tools, learning and applying pragmatic patterns to solve real product problems.
+
+  Outside of work I follow programming trends such as AI, security, and best practices, you might also find me tinkering with small pet projects.`,
     highlights: [
       "Modernizing enterprise apps with .NET & Angular",
       "Domain-Driven Design & CQRS patterns",
@@ -35,42 +32,39 @@ export const resumeData = {
       company: "Customer Benefits Platform",
       role: "Full-Stack Developer",
       period: "2022 - Present",
-      description: "Led frontend modernization and backend upgrades for a multi-locale enterprise platform.",
+      description: "Front-end and back-end modernization for a multi‑locale Customer Benefits Platform.",
       achievements: [
-        "Upgraded frontend to modern Angular with improved architecture",
-        "Migrated backend from legacy .NET to .NET 7",
-        "Implemented rate limiting and API security enhancements",
-        "Integrated Power BI embedding for analytics dashboards",
-        "Enhanced developer experience with AI tooling integration",
+        "Modernized the frontend architecture with Angular and migrated backend services to .NET 7",
+        "Implemented a rate limiter and reliability improvements to stabilize high‑traffic flows",
+        "Embedded Power BI dashboards and improved analytics UX for stakeholders",
+        "Authored GitHub Copilot guidelines and developer tooling patterns to improve AI‑assisted coding",
+        "Collaborated on code reviews, mentoring, and cross‑functional feature design",
       ],
-      tech: [".NET 7", "Angular", "Azure", "Power BI", "MongoDB"],
+      tech: ["Angular", ".NET 7", "MongoDB", "SQL", "RabbitMQ", "Redis", "Power BI"],
     },
     {
       company: "Warehouse Management System",
       role: "Full-Stack Developer",
       period: "2021 - 2022",
-      description: "Contributed to an enterprise-scale WMS built with DDD, CQRS, and Event Sourcing patterns.",
+      description: "Enterprise WMS built with DDD, CQRS and Event Sourcing to model complex warehouse workflows.",
       achievements: [
-        "Developed features using Domain-Driven Design principles",
-        "Contributed to Angular migration from legacy codebase",
-        "Supported TFS to Git migration for improved CI/CD",
-        "Implemented complex business logic with event sourcing",
-        "Mentored junior developers on architecture patterns",
+        "Implemented domain-driven features and event‑sourced flows for inventory, inbound/outbound and trip tracking",
+        "Led Angular migration efforts from legacy code and supported VCS transition to Git",
+        "Mentored teammates on architectural patterns and testing strategies",
       ],
-      tech: ["DDD", "CQRS", "Event Sourcing", ".NET", "Angular"],
+      tech: ["DDD", "CQRS", "Event Sourcing", "Azure Service Bus", "SQL Server", "Entity Framework", "Angular"],
     },
     {
       company: "BlooDoChallenge",
       role: "Volunteer Developer",
       period: "2020 - 2021",
-      description: "Helped modernize a blood donation platform connecting donors with those in need.",
+      description: "Contributed to a national blood‑donation platform focused on donor registration, campaigns, and emergency requests.",
       achievements: [
-        "Migrated legacy AngularJS to modern Angular",
-        "Built emergency blood request feature",
-        "Improved admin dashboards for better monitoring",
-        "Optimized database queries for better performance",
+        "Led parts of the Angular migration and improved admin dashboards",
+        "Built an emergency blood request feature to streamline urgent needs",
+        "Mentored junior contributors and improved monitoring and performance",
       ],
-      tech: ["Angular", "TypeScript", ".NET", "SQL Server"],
+      tech: [".NET", "Angular", "Azure Functions", "MSSQL", "Git"],
     },
   ],
   

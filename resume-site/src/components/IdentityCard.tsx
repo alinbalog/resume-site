@@ -65,9 +65,6 @@ export function IdentityCard() {
             ))}
         </div>
 
-        {/* Status Indicator - Removed */}
-
-
         {/* Bottom Content */}
         <div className="absolute bottom-0 left-0 right-0 z-20 p-6 lg:p-8 flex flex-col">
             
