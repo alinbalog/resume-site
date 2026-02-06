@@ -5,10 +5,11 @@ import Lenis from "lenis";
 import { IdentityCard } from "./IdentityCard";
 import { AboutSection } from "./AboutSection";
 import { ExperienceSection } from "./ExperienceSection";
-import { ProjectsSection } from "./ProjectsSection";
 import { SkillsSection } from "./SkillsSection";
 import { ContactSection } from "./ContactSection";
 import { VersionSelector } from "./VersionSelector";
+import { SideNav } from "./SideNav";
+import { BottomNav } from "./BottomNav";
 import { useTheme } from "@/context/ThemeContext";
 
 export function ResumePage() {
@@ -48,13 +49,12 @@ export function ResumePage() {
         </div>
 
         {/* Right section - Scrollable content */}
-        <div className="flex-1 p-6 pl-0">
+        <div className="flex-1 p-6 pl-0 pr-28">
           <div className="space-y-6">
-            <AboutSection />
-            <ExperienceSection />
-            <ProjectsSection />
-            <SkillsSection />
-            <ContactSection />
+            <div id="about"><AboutSection /></div>
+            <div id="experience"><ExperienceSection /></div>
+            <div id="skills"><SkillsSection /></div>
+            <div id="contact"><ContactSection /></div>
             
             {/* Footer spacer */}
             <div className="h-12" />
@@ -72,20 +72,23 @@ export function ResumePage() {
         </div>
 
         {/* Scrollable cards */}
-        <div className="p-4 space-y-4">
-          <AboutSection />
-          <ExperienceSection />
-          <ProjectsSection />
-          <SkillsSection />
-          <ContactSection />
+        <div className="p-4 space-y-4 pb-28">
+          <div id="m-about"><AboutSection /></div>
+          <div id="m-experience"><ExperienceSection /></div>
+          <div id="m-skills"><SkillsSection /></div>
+          <div id="m-contact"><ContactSection /></div>
 
           {/* Footer spacer for mobile */}
           <div className="h-20" />
         </div>
       </div>
 
+      {/* Navigation */}
+      <SideNav />
+      <BottomNav />
+
       {/* Version selector */}
-      <VersionSelector />
+      {/* <VersionSelector /> */}
 
       {/* Version-specific background decorations */}
       {version === "2" && (
