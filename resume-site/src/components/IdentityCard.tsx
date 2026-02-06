@@ -1,17 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Download, MapPin } from "lucide-react";
+import Image from "next/image";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import { MdEmail, MdArrowUpward } from "react-icons/md";
 import { resumeData } from "@/data/resume";
 import { useTheme } from "@/context/ThemeContext";
 
 export function IdentityCard() {
-  const { version } = useTheme();
-
   const socialLinks = [
-    { icon: Github, href: resumeData.personal.github, label: "GitHub" },
-    { icon: Linkedin, href: resumeData.personal.linkedin, label: "LinkedIn" },
-    { icon: Mail, href: `mailto:${resumeData.personal.email}`, label: "Email" },
+    { icon: FaGithub, href: resumeData.personal.github, label: "GitHub" },
+    { icon: FaLinkedinIn, href: resumeData.personal.linkedin, label: "LinkedIn" },
+    { icon: MdEmail, href: `mailto:${resumeData.personal.email}`, label: "Email" },
   ];
 
   return (
@@ -22,191 +22,107 @@ export function IdentityCard() {
       className="relative h-full w-full"
     >
       {/* Card container */}
-      <div className="glass-card relative h-full overflow-hidden rounded-2xl lg:rounded-3xl">
-        {/* Background gradient based on version */}
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            background:
-              version === "1"
-                ? "radial-gradient(ellipse at 50% 0%, rgba(0, 255, 136, 0.3), transparent 70%)"
-                : version === "2"
-                ? "radial-gradient(ellipse at 50% 0%, rgba(0, 240, 255, 0.4), transparent 70%)"
-                : version === "3"
-                ? "radial-gradient(ellipse at 50% 0%, rgba(168, 85, 247, 0.4), transparent 70%)"
-                : version === "4"
-                ? "radial-gradient(ellipse at 50% 0%, rgba(255, 107, 107, 0.4), transparent 70%)"
-                : "radial-gradient(ellipse at 50% 0%, rgba(250, 204, 21, 0.3), transparent 70%)",
-          }}
-        />
-
-        {/* Photo section */}
-        <div className="relative h-[45%] lg:h-[50%] overflow-hidden">
-          {/* Placeholder gradient for photo */}
-          <div 
-            className="absolute inset-0"
-            style={{
-              background: `linear-gradient(180deg, 
-                var(--background-card) 0%, 
-                rgba(var(--accent), 0.1) 50%,
-                var(--background-card) 100%)`,
-            }}
+      <div className="group relative h-full w-full overflow-hidden rounded-4xl bg-zinc-900 shadow-2xl">
+        
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0 select-none">
+          <Image 
+            src="https://picsum.photos/600/800?grayscale" 
+            alt={resumeData.personal.name}
+            fill
+            className="object-cover"
+            draggable={false}
+            unoptimized
           />
-          
-          {/* Decorative circle/avatar placeholder */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="relative"
-            >
-              <div 
-                className="w-32 h-32 lg:w-40 lg:h-40 rounded-full border-2 flex items-center justify-center text-4xl lg:text-5xl font-bold"
-                style={{ 
-                  borderColor: 'var(--accent)',
-                  background: 'linear-gradient(135deg, var(--background-card), var(--background))',
-                }}
-              >
-                <span style={{ color: 'var(--accent)' }}>AB</span>
-              </div>
-              
-              {/* Orbiting accent */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0"
-              >
-                <div 
-                  className="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full"
-                  style={{ background: 'var(--accent)' }}
-                />
-              </motion.div>
-            </motion.div>
-          </div>
-
-          {/* Gradient overlay at bottom */}
-          <div 
-            className="absolute bottom-0 left-0 right-0 h-24"
-            style={{
-              background: 'linear-gradient(to top, var(--background-card), transparent)',
-            }}
-          />
+          {/* Enhanced readability overlay gradients */}
+          <div className="absolute inset-0 bg-linear-to-b from-black/20 via-transparent to-black/90" />
+          <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/60 to-transparent opacity-90" />
         </div>
 
-        {/* Content section */}
-        <div className="relative p-6 lg:p-8 flex flex-col h-[55%] lg:h-[50%]">
-          {/* Name and title */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            <h1 
-              className="text-2xl lg:text-3xl font-bold tracking-tight"
-              style={{ fontFamily: 'var(--font-display)' }}
-            >
-              {resumeData.personal.name}
-            </h1>
-            <p 
-              className="text-lg lg:text-xl mt-1"
-              style={{ color: 'var(--accent)' }}
-            >
-              {resumeData.personal.title}
-            </p>
-          </motion.div>
-
-          {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="mt-4 text-sm lg:text-base leading-relaxed"
-            style={{ color: 'var(--foreground-muted)' }}
-          >
-            {resumeData.personal.tagline}
-          </motion.p>
-
-          {/* Location */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.6 }}
-            className="mt-3 flex items-center gap-2 text-sm"
-            style={{ color: 'var(--foreground-dim)' }}
-          >
-            <MapPin size={14} />
-            <span>{resumeData.personal.location}</span>
-          </motion.div>
-
-          {/* Spacer */}
-          <div className="flex-1" />
-
-          {/* Social links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="flex gap-3"
-          >
-            {socialLinks.map(({ icon: Icon, href, label }) => (
-              <motion.a
+        {/* Top Right Social Icons */}
+        <div className="absolute right-0 top-0 z-20 p-6 flex flex-col gap-3">
+            {socialLinks.map(({ icon: Icon, href, label }, index) => (
+            <motion.a
                 key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  color: 'var(--foreground-muted)',
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ 
+                  opacity: { delay: 0.5 + index * 0.1, duration: 0.5 },
+                  x: { delay: 0.5 + index * 0.1, duration: 0.5 },
+                  scale: { type: "tween", duration: 0.15, ease: "easeOut" }
                 }}
+                whileHover={{ scale: 1.15, x: -3 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex h-11 w-11 items-center justify-center rounded-full backdrop-blur-md hover:bg-white/30 hover:text-white hover:shadow-lg hover:shadow-white/20 border border-white/20 bg-white/10 text-zinc-200 shadow-md"
+                style={{ transition: 'background-color 0.15s, color 0.15s, box-shadow 0.15s' }}
                 aria-label={label}
-              >
-                <Icon size={18} />
-              </motion.a>
+            >
+                <Icon size={20} />
+            </motion.a>
             ))}
-          </motion.div>
-
-          {/* Download button */}
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="mt-4 w-full py-3 px-4 rounded-xl flex items-center justify-center gap-2 font-medium text-sm transition-all duration-300"
-            style={{
-              background: 'var(--accent)',
-              color: 'var(--background)',
-            }}
-          >
-            <Download size={16} />
-            Download Resume
-          </motion.button>
         </div>
 
-        {/* Version-specific decorative elements */}
-        {version === "3" && (
-          <>
-            <div 
-              className="absolute top-4 right-4 w-8 h-8 border rotate-45"
-              style={{ borderColor: 'var(--accent)', opacity: 0.3 }}
-            />
-            <div 
-              className="absolute bottom-4 left-4 w-4 h-4 border rotate-12"
-              style={{ borderColor: 'var(--accent)', opacity: 0.3 }}
-            />
-          </>
-        )}
+        {/* Status Indicator - Removed */}
 
-        {version === "5" && (
-          <div 
-            className="absolute top-0 left-0 w-full h-1"
-            style={{ background: 'var(--accent)' }}
-          />
-        )}
+
+        {/* Bottom Content */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 p-6 lg:p-8 flex flex-col">
+            
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+            >
+                 <h1 className="text-3xl lg:text-4xl font-bold tracking-tight text-white mb-1">
+                  {resumeData.personal.name}
+                 </h1>
+                 <p className="text-lg text-zinc-400 font-medium">
+                  {resumeData.personal.title}
+                 </p>
+                 
+                 {/* Divider line */}
+                 <div className="mt-3 mb-1 h-px bg-linear-to-r from-zinc-700 via-zinc-600 to-transparent" />
+            </motion.div>
+
+            <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="mt-2 text-sm text-zinc-500 leading-relaxed max-w-[90%] line-clamp-3"
+            >
+                {resumeData.personal.tagline}
+            </motion.p>
+            
+            <div className="pt-5">
+                 <motion.a
+                    href="/resume.pdf"
+                    download="Alin_Balog_Resume.pdf"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      opacity: { delay: 0.4, duration: 0.6 },
+                      y: { delay: 0.4, duration: 0.6, type: "tween" }
+                    }}
+                    whileTap={{ scale: 0.97 }}
+                    className="group/btn relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-lg py-3 px-5 font-semibold text-sm cursor-pointer border-2 border-zinc-600/50 bg-zinc-800/30 text-zinc-100 shadow-lg hover:text-zinc-900 hover:border-[var(--accent)] transition-colors duration-300"
+                >
+                    <span className="relative z-20">Download CV</span>
+                    
+                    <div className="relative z-20 flex items-center justify-center w-6 h-6 rounded-full border border-zinc-600 p-1 group-hover/btn:border-zinc-900 transition-all duration-300">
+                      <MdArrowUpward size={14} className="rotate-45 group-hover/btn:rotate-[135deg] transition-transform duration-300" />
+                    </div>
+                    
+                    {/* Circular fill animation */}
+                    <div 
+                      className="absolute left-0 top-1/2 -translate-y-1/2 w-full aspect-square rounded-full z-0 scale-0 -translate-x-1/2 group-hover/btn:scale-[2.5] group-hover/btn:translate-x-0 transition-all duration-700 ease-out"
+                      style={{ background: 'var(--accent)' }}
+                    />
+                </motion.a>
+            </div>
+        </div>
       </div>
     </motion.div>
   );

@@ -2,8 +2,8 @@ export const resumeData = {
   personal: {
     name: "Alin Balog",
     title: "Full-Stack Developer",
-    tagline: "Building modern enterprise applications with .NET & Angular",
-    email: "contact@alinbalog.dev",
+    tagline: "Design-minded Full‑Stack Developer — .NET, Angular, product & UI-focused",
+    email: "alinbalog5@gmail.com",
     github: "https://github.com/alinbalog",
     linkedin: "https://linkedin.com/in/alinbalog",
     location: "Romania",
@@ -13,12 +13,14 @@ export const resumeData = {
   
   about: {
     headline: "Crafting robust, scalable solutions for complex business challenges",
-    description: `Full-Stack Developer with 2+ years of experience modernizing enterprise applications. 
-    I specialize in transforming legacy systems into modern, maintainable architectures using .NET and Angular.
-    
-    My expertise spans across DDD, CQRS, Event Sourcing, and distributed systems architecture. 
-    I'm passionate about code quality, developer experience, and leveraging AI-assisted development tools 
-    to boost productivity.`,
+    description: `Full-Stack Developer with 2+ years of experience modernizing enterprise applications.
+    I don't stop at Angular and .NET — I love design, implementation, and creating delightful user
+    experiences. I specialize in transforming legacy systems into modern, maintainable architectures
+    while paying close attention to UX, visual polish, and developer experience.
+
+    My expertise spans DDD, CQRS, Event Sourcing, and distributed systems architecture. I'm passionate
+    about clean code, thoughtful interfaces, and leveraging AI-assisted development tools to boost
+    productivity and quality.`,
     highlights: [
       "Modernizing enterprise apps with .NET & Angular",
       "Domain-Driven Design & CQRS patterns",

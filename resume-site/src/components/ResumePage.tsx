@@ -43,13 +43,13 @@ export function ResumePage() {
       {/* Desktop layout */}
       <div className="hidden lg:flex min-h-screen">
         {/* Left section - Fixed Identity */}
-        <div className="w-[30%] min-w-[320px] max-w-[400px] h-screen p-6 sticky top-0">
+        <div className="w-[30%] min-w-[320px] max-w-125 h-screen p-6 sticky top-0">
           <IdentityCard />
         </div>
 
         {/* Right section - Scrollable content */}
         <div className="flex-1 p-6 pl-0">
-          <div className="max-w-3xl space-y-6">
+          <div className="space-y-6">
             <AboutSection />
             <ExperienceSection />
             <ProjectsSection />
