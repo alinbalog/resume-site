@@ -11,7 +11,37 @@ export function ExperienceSection() {
 
   return (
     <ContentCard delay={0.1}>
-      {/* Pill-style title */}
+      <div className="relative">
+        {/* Static blob in top right */}
+        <motion.div
+          className="pointer-events-none absolute top-0 right-0 w-80 rounded-full blur-3xl opacity-15"
+          style={{
+            background: "var(--accent)",
+            height: '25%',
+            translateX: "30%",
+            translateY: "-30%",
+          }}
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 0.15 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3 }}
+        />
+
+        {/* Static blob in bottom left */}
+        <motion.div
+          className="pointer-events-none absolute bottom-0 left-0 w-48 h-48 rounded-full blur-3xl opacity-12"
+          style={{
+            background: "var(--accent)",
+            translateX: "-40%",
+            translateY: "40%",
+          }}
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 0.12 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.5 }}
+        />
+
+        <div className="relative z-10">
       <div className="mb-8">
         <div
           className="inline-flex items-center gap-2.5 px-4 py-2 rounded-lg"
@@ -217,6 +247,8 @@ export function ExperienceSection() {
             </div>
           </motion.div>
         ))}
+      </div>
+        </div>
       </div>
     </ContentCard>
   );

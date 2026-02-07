@@ -14,7 +14,22 @@ export function AboutSection() {
 
   return (
     <ContentCard>
-      {/* Pill-style title */}
+      <div className="relative">
+        {/* Static blob in bottom right */}
+        <motion.div
+          className="pointer-events-none absolute bottom-0 right-0 w-80 h-48 rounded-full blur-3xl opacity-15"
+          style={{
+            background: "var(--accent)",
+            translateX: "40%",
+            translateY: "40%",
+          }}
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 0.15 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3 }}
+        />
+
+        <div className="relative z-10">
       <div className="mb-8">
         <div
           className="inline-flex items-center gap-2.5 px-4 py-2 rounded-lg"
@@ -82,6 +97,8 @@ export function AboutSection() {
             {para}
           </motion.p>
         ))}
+        </div>
+      </div>
     </ContentCard>
   );
 }
