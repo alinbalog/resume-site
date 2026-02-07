@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Code2, Layers, Server, Users, LucideIcon } from "lucide-react";
 import { resumeData } from "@/data/resume";
 import { ContentCard } from "./ContentCard";
-import { useTheme } from "@/context/ThemeContext";
 import { useState } from "react";
 
 interface SectionCardProps {
@@ -132,13 +131,9 @@ const SectionCard = ({
 };
 
 export function SkillsSection() {
-  const { version } = useTheme();
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
 
-  const tagBorder =
-    version === "5"
-      ? "1px solid var(--accent)"
-      : "1px solid rgba(255, 255, 255, 0.06)";
+  const tagBorder = "1px solid rgba(255, 255, 255, 0.06)";
 
   return (
     <ContentCard delay={0.3}>

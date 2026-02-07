@@ -9,9 +9,9 @@
   --foreground-muted: #a1a1a1;
   --foreground-dim: #666666;
   
-  /* Accent colors - will be overridden by themes */
+  /* Accent colors - Emerald */
   --accent: #00ff88;
-  --accent-glow: rgba(0, 255, 136, 0.15);
+  --accent-glow: rgba(0, 255, 136, 0.12);
   --accent-dim: rgba(0, 255, 136, 0.5);
   
   /* Card styling */
@@ -22,49 +22,6 @@
   --font-display: var(--font-syne), sans-serif;
   --font-mono: var(--font-space-mono), monospace;
   --font-serif: var(--font-instrument-serif), serif;
-}
-
-/* Theme 1: Dark Premium Minimal - Emerald */
-[data-theme="1"] {
-  --accent: #00ff88;
-  --accent-glow: rgba(0, 255, 136, 0.12);
-  --accent-dim: rgba(0, 255, 136, 0.5);
-}
-
-/* Theme 2: Dark Premium Neon - Cyan Electric */
-[data-theme="2"] {
-  --accent: #00f0ff;
-  --accent-glow: rgba(0, 240, 255, 0.15);
-  --accent-dim: rgba(0, 240, 255, 0.5);
-  --background: #050508;
-  --background-card: #0d0d12;
-}
-
-/* Theme 3: Dark Premium Geometric - Purple Editorial */
-[data-theme="3"] {
-  --accent: #a855f7;
-  --accent-glow: rgba(168, 85, 247, 0.12);
-  --accent-dim: rgba(168, 85, 247, 0.5);
-  --background: #08070c;
-  --background-card: #12101a;
-}
-
-/* Theme 4: Dark Premium Gradient - Warm Coral */
-[data-theme="4"] {
-  --accent: #ff6b6b;
-  --accent-glow: rgba(255, 107, 107, 0.12);
-  --accent-dim: rgba(255, 107, 107, 0.5);
-  --background: #0c0808;
-  --background-card: #1a1414;
-}
-
-/* Theme 5: Dark Premium Brutalist - Yellow Warning */
-[data-theme="5"] {
-  --accent: #facc15;
-  --accent-glow: rgba(250, 204, 21, 0.1);
-  --accent-dim: rgba(250, 204, 21, 0.5);
-  --background: #0a0a08;
-  --background-card: #141410;
 }
 
 @theme inline {

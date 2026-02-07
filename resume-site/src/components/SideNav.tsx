@@ -70,7 +70,7 @@ export function SideNav() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.8, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-1 p-3 rounded-3xl bg-black/40 backdrop-blur-xl border border-white/10 shadow-lg"
+      className="fixed right-3 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-1 p-3 rounded-3xl bg-black/40 backdrop-blur-xl border border-white/10 shadow-lg"
       aria-label="Section navigation"
     >
       {/* Section icons */}

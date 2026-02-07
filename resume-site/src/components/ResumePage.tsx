@@ -7,14 +7,10 @@ import { AboutSection } from "./AboutSection";
 import { ExperienceSection } from "./ExperienceSection";
 import { SkillsSection } from "./SkillsSection";
 import { ContactSection } from "./ContactSection";
-import { VersionSelector } from "./VersionSelector";
 import { SideNav } from "./SideNav";
 import { BottomNav } from "./BottomNav";
-import { useTheme } from "@/context/ThemeContext";
 
 export function ResumePage() {
-  const { version } = useTheme();
-
   // Smooth scrolling
   useEffect(() => {
     const lenis = new Lenis({
@@ -49,7 +45,7 @@ export function ResumePage() {
         </div>
 
         {/* Right section - Scrollable content */}
-        <div className="flex-1 p-6 pl-0 pr-28">
+        <div className="flex-1 p-6 pl-0 pr-24">
           <div className="space-y-6">
             <div id="about"><AboutSection /></div>
             <div id="experience"><ExperienceSection /></div>
@@ -87,52 +83,17 @@ export function ResumePage() {
       <SideNav />
       <BottomNav />
 
-      {/* Version selector */}
-      {/* <VersionSelector /> */}
-
-      {/* Version-specific background decorations */}
-      {version === "2" && (
-        <>
-          <div 
-            className="fixed top-0 left-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none"
-            style={{ background: 'var(--accent)', opacity: 0.03 }}
-          />
-          <div 
-            className="fixed bottom-0 right-1/4 w-96 h-96 rounded-full blur-[120px] pointer-events-none"
-            style={{ background: 'var(--accent)', opacity: 0.03 }}
-          />
-        </>
-      )}
-
-      {version === "3" && (
-        <>
-          {/* Geometric grid pattern */}
-          <div 
-            className="fixed inset-0 pointer-events-none opacity-[0.02]"
-            style={{
-              backgroundImage: `
-                linear-gradient(var(--accent) 1px, transparent 1px),
-                linear-gradient(90deg, var(--accent) 1px, transparent 1px)
-              `,
-              backgroundSize: '60px 60px',
-            }}
-          />
-        </>
-      )}
-
-      {version === "4" && (
-        <>
-          {/* Gradient blobs */}
-          <div 
-            className="fixed top-1/4 -left-32 w-64 h-64 rounded-full blur-[100px] pointer-events-none"
-            style={{ background: 'var(--accent)', opacity: 0.05 }}
-          />
-          <div 
-            className="fixed bottom-1/4 -right-32 w-64 h-64 rounded-full blur-[100px] pointer-events-none"
-            style={{ background: 'var(--accent)', opacity: 0.05 }}
-          />
-        </>
-      )}
+      {/* Background geometric grid pattern */}
+      <div 
+        className="fixed inset-0 pointer-events-none opacity-[0.02]"
+        style={{
+          backgroundImage: `
+            linear-gradient(var(--accent) 1px, transparent 1px),
+            linear-gradient(90deg, var(--accent) 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px',
+        }}
+      />
     </div>
   );
 }

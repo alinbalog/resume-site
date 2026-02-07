@@ -1,5 +1,7 @@
-import { redirect } from "next/navigation";
+"use client";
+
+import { ResumePage } from "@/components/ResumePage";
 
 export default function Home() {
-  redirect("/1");
+  return <ResumePage />;
 }

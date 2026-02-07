@@ -4,10 +4,8 @@ import { motion } from "framer-motion";
 import { Briefcase, ChevronRight, MapPin } from "lucide-react";
 import { resumeData } from "@/data/resume";
 import { ContentCard } from "./ContentCard";
-import { useTheme } from "@/context/ThemeContext";
 
 export function ExperienceSection() {
-  const { version } = useTheme();
 
   return (
     <ContentCard delay={0.1}>
@@ -84,10 +82,7 @@ export function ExperienceSection() {
               <div
                 className="absolute left-1.75 top-12 -bottom-10 w-0.5"
                 style={{
-                  background:
-                    version === "5"
-                      ? "var(--accent)"
-                      : "linear-gradient(to bottom, var(--accent-dim), transparent)",
+                  background: "linear-gradient(to bottom, var(--accent-dim), transparent)",
                 }}
               />
             )}
@@ -104,12 +99,6 @@ export function ExperienceSection() {
                   whileHover={{ scale: 1.3 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 />
-                {version === "2" && (
-                  <div
-                    className="absolute inset-0 rounded-full blur-md"
-                    style={{ background: "var(--accent)", opacity: 0.3 }}
-                  />
-                )}
               </div>
 
               {/* Company block */}
@@ -120,10 +109,7 @@ export function ExperienceSection() {
                     <h3
                       className="font-bold text-lg"
                       style={{
-                        fontFamily:
-                          version === "3"
-                            ? "var(--font-serif)"
-                            : "var(--font-display)",
+                        fontFamily: "var(--font-display)",
                       }}
                     >
                       {company.company}
@@ -159,14 +145,8 @@ export function ExperienceSection() {
                       }}
                       className="relative rounded-xl p-4"
                       style={{
-                        background:
-                          version === "5"
-                            ? "transparent"
-                            : "rgba(255, 255, 255, 0.02)",
-                        border:
-                          version === "5"
-                            ? "1px solid var(--accent-dim)"
-                            : "1px solid rgba(255, 255, 255, 0.04)",
+                        background: "rgba(255, 255, 255, 0.02)",
+                        border: "1px solid rgba(255, 255, 255, 0.04)",
                       }}
                     >
                       {/* Project header */}
@@ -230,10 +210,6 @@ export function ExperienceSection() {
                             style={{
                               background: "var(--accent-glow)",
                               color: "var(--accent)",
-                              border:
-                                version === "5"
-                                  ? "1px solid var(--accent)"
-                                  : "none",
                             }}
                           >
                             {tech}

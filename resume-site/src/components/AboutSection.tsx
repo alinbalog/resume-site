@@ -4,10 +4,8 @@ import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { resumeData } from "@/data/resume";
 import { ContentCard } from "./ContentCard";
-import { useTheme } from "@/context/ThemeContext";
 
 export function AboutSection() {
-  const { version } = useTheme();
 
   // Split headline into words for staggered blur-in animation
   const headlineWords = resumeData.about.headline.split(" ");
@@ -56,9 +54,7 @@ export function AboutSection() {
       <h3
         className="text-xl lg:text-2xl font-bold mb-6 leading-snug flex flex-wrap gap-x-[0.3em] gap-y-1"
         style={{
-          fontFamily:
-            version === "3" ? "var(--font-serif)" : "var(--font-display)",
-          fontStyle: version === "3" ? "italic" : "normal",
+          fontFamily: "var(--font-display)",
         }}
       >
         {headlineWords.map((word, i) => (

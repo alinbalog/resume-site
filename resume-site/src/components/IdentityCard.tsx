@@ -1,18 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import Image from "next/image";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
-import { MdEmail, MdArrowUpward } from "react-icons/md";
+import { FaGithub, FaLinkedinIn, FaEnvelope } from "react-icons/fa6";
+import { MdArrowUpward } from "react-icons/md";
 import { resumeData } from "@/data/resume";
-import { useTheme } from "@/context/ThemeContext";
 
 export function IdentityCard() {
   const socialLinks = [
     { icon: FaGithub, href: resumeData.personal.github, label: "GitHub" },
     { icon: FaLinkedinIn, href: resumeData.personal.linkedin, label: "LinkedIn" },
-    { icon: MdEmail, href: `mailto:${resumeData.personal.email}`, label: "Email" },
+    { icon: FaEnvelope, href: `mailto:${resumeData.personal.email}`, label: "Email" },
   ];
+
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   return (
     <motion.div
@@ -41,28 +43,49 @@ export function IdentityCard() {
 
         {/* Top Right Social Icons */}
         <div className="absolute right-0 top-0 z-20 p-6 flex flex-col gap-3">
-            {socialLinks.map(({ icon: Icon, href, label }, index) => (
-            <motion.a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ 
-                  opacity: { delay: 0.5 + index * 0.1, duration: 0.5 },
-                  x: { delay: 0.5 + index * 0.1, duration: 0.5 },
-                  scale: { type: "tween", duration: 0.15, ease: "easeOut" }
-                }}
-                whileHover={{ scale: 1.15, x: -3 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex h-11 w-11 items-center justify-center rounded-full backdrop-blur-md hover:bg-white/30 hover:text-white hover:shadow-lg hover:shadow-white/20 border border-white/20 bg-white/10 text-zinc-200 shadow-md"
-                style={{ transition: 'background-color 0.15s, color 0.15s, box-shadow 0.15s' }}
-                aria-label={label}
-            >
-                <Icon size={20} />
-            </motion.a>
-            ))}
+            {socialLinks.map(({ icon: Icon, href, label }, index) => {
+              const isHovered = hoveredItem === label;
+              return (
+                <div key={label} className="relative">
+                  <motion.a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ 
+                      opacity: { delay: 0.5 + index * 0.1, duration: 0.5 },
+                      x: { delay: 0.5 + index * 0.1, duration: 0.5 },
+                      scale: { type: "tween", duration: 0.15, ease: "easeOut" }
+                    }}
+                    whileHover={{ scale: 1.15, x: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                    onMouseEnter={() => setHoveredItem(label)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                    className="relative flex w-10 h-10 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-zinc-200 shadow-md hover:bg-white/5 hover:text-[var(--foreground)] transition-all duration-200"
+                    style={{ transition: 'background-color 0.15s, color 0.15s, box-shadow 0.15s' }}
+                    aria-label={label}
+                  >
+                    <Icon size={18} strokeWidth={1.8} />
+                  </motion.a>
+
+                  {/* Tooltip */}
+                  <AnimatePresence>
+                    {isHovered && (
+                      <motion.div
+                        initial={{ opacity: 0, x: 2 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 2 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute right-full top-1/2 -translate-y-1/2 mr-2.5 px-2.5 py-1 rounded-lg bg-[var(--background-card)] border border-[var(--card-border)] text-[var(--foreground)] text-xs font-mono tracking-wider whitespace-nowrap pointer-events-none shadow-lg"
+                      >
+                        {label}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
         </div>
 
         {/* Bottom Content */}
