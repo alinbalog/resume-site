@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import {
   Sparkles,
   Briefcase,
+  FolderOpen,
   Code2,
   Send,
   ArrowUp,
@@ -13,6 +14,7 @@ import {
 const sections = [
   { id: "m-about", label: "About", icon: Sparkles },
   { id: "m-experience", label: "Experience", icon: Briefcase },
+  { id: "m-projects", label: "Projects", icon: FolderOpen },
   { id: "m-skills", label: "Skills", icon: Code2 },
   { id: "m-contact", label: "Contact", icon: Send },
 ];
@@ -22,35 +24,56 @@ export function BottomNav() {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
-    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-      let mostVisible: IntersectionObserverEntry | null = null;
+    let rafId: number | null = null;
 
-      for (const entry of entries) {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
-          if (!mostVisible || entry.intersectionRatio > mostVisible.intersectionRatio) {
-            mostVisible = entry;
-          }
+    const updateActiveSection = () => {
+      const anchorY = window.innerHeight * 0.4;
+
+      let containingSection: string | null = null;
+      let closestSection = sections[0]?.id ?? "m-about";
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      for (const { id } of sections) {
+        const element = document.getElementById(id);
+        if (!element) {
+          continue;
+        }
+
+        const rect = element.getBoundingClientRect();
+
+        if (rect.top <= anchorY && rect.bottom >= anchorY) {
+          containingSection = id;
+          break;
+        }
+
+        const distance = Math.abs(rect.top - anchorY);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestSection = id;
         }
       }
 
-      if (mostVisible) {
-        setActiveSection(mostVisible.target.id);
-      }
+      setActiveSection(containingSection ?? closestSection);
     };
 
-    const observer = new IntersectionObserver(handleIntersect, {
-      threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-      rootMargin: "-20% 0px -30% 0px",
-    });
-
-    sections.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) {
-        observer.observe(el);
+    const onScrollOrResize = () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
       }
-    });
+      rafId = requestAnimationFrame(updateActiveSection);
+    };
 
-    return () => observer.disconnect();
+    updateActiveSection();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+
+    return () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+    };
   }, []);
 
   useEffect(() => {

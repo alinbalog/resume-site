@@ -5,6 +5,7 @@ import Lenis from "lenis";
 import { IdentityCard } from "./IdentityCard";
 import { AboutSection } from "./AboutSection";
 import { ExperienceSection } from "./ExperienceSection";
+import { ProjectsSection } from "./ProjectsSection";
 import { SkillsSection } from "./SkillsSection";
 import { ContactSection } from "./ContactSection";
 import { SideNav } from "./SideNav";
@@ -49,6 +50,7 @@ export function ResumePage() {
           <div className="space-y-6">
             <div id="about"><AboutSection /></div>
             <div id="experience"><ExperienceSection /></div>
+            <div id="projects"><ProjectsSection /></div>
             <div id="skills"><SkillsSection /></div>
             <div id="contact"><ContactSection /></div>
             
@@ -71,6 +73,7 @@ export function ResumePage() {
         <div className="p-4 space-y-4 pb-28">
           <div id="m-about"><AboutSection /></div>
           <div id="m-experience"><ExperienceSection /></div>
+          <div id="m-projects"><ProjectsSection /></div>
           <div id="m-skills"><SkillsSection /></div>
           <div id="m-contact"><ContactSection /></div>
 

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
   Briefcase,
+  FolderOpen,
   Code2,
   Send,
   ArrowUp,
@@ -13,6 +14,7 @@ import {
 const sections = [
   { id: "about", label: "About", icon: Sparkles },
   { id: "experience", label: "Experience", icon: Briefcase },
+  { id: "projects", label: "Projects", icon: FolderOpen },
   { id: "skills", label: "Skills", icon: Code2 },
   { id: "contact", label: "Contact", icon: Send },
 ];
@@ -21,37 +23,58 @@ export function SideNav() {
   const [activeSection, setActiveSection] = useState<string>("about");
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
-  // Track active section via IntersectionObserver
+  // Track active section based on viewport anchor
   useEffect(() => {
-    const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-      let mostVisible: IntersectionObserverEntry | null = null;
+    let rafId: number | null = null;
 
-      for (const entry of entries) {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
-          if (!mostVisible || entry.intersectionRatio > mostVisible.intersectionRatio) {
-            mostVisible = entry;
-          }
+    const updateActiveSection = () => {
+      const anchorY = window.innerHeight * 0.35;
+
+      let containingSection: string | null = null;
+      let closestSection = sections[0]?.id ?? "about";
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      for (const { id } of sections) {
+        const element = document.getElementById(id);
+        if (!element) {
+          continue;
+        }
+
+        const rect = element.getBoundingClientRect();
+
+        if (rect.top <= anchorY && rect.bottom >= anchorY) {
+          containingSection = id;
+          break;
+        }
+
+        const distance = Math.abs(rect.top - anchorY);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestSection = id;
         }
       }
 
-      if (mostVisible) {
-        setActiveSection(mostVisible.target.id);
-      }
+      setActiveSection(containingSection ?? closestSection);
     };
 
-    const observer = new IntersectionObserver(handleIntersect, {
-      threshold: [0.3, 0.6],
-      rootMargin: "-10% 0px -40% 0px",
-    });
-
-    sections.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) {
-        observer.observe(el);
+    const onScrollOrResize = () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
       }
-    });
+      rafId = requestAnimationFrame(updateActiveSection);
+    };
 
-    return () => observer.disconnect();
+    updateActiveSection();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+
+    return () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+    };
   }, []);
 
   const scrollToSection = useCallback((id: string) => {
