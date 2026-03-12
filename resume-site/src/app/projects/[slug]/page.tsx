@@ -3,7 +3,7 @@
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { resumeData } from "@/data/resume";
-import { CaseStudyPage } from "@/components/CaseStudyPage";
+import { CaseStudyPage } from "@/components/case-study/CaseStudyPage";
 
 export default function ProjectPage() {
   const params = useParams();

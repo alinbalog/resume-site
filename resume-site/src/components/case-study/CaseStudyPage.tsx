@@ -5,179 +5,13 @@ import { useRef } from "react";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Lightbulb, FlaskConical, Layers, Sparkles } from "lucide-react";
 import { resumeData } from "@/data/resume";
-
-type Project = (typeof resumeData.projects)[number] & { liveUrl?: string };
+import { Marquee } from "./Marquee";
+import { ProjectCard } from "./ProjectCard";
+import { SectionHeading } from "./SectionHeading";
+import type { Project } from "./types";
 
 interface CaseStudyPageProps {
   project: Project;
-}
-
-/* ──────────────────────────────────────────────
-   Marquee — infinitely scrolling status ribbon
-   ────────────────────────────────────────────── */
-function Marquee({ items }: Readonly<{ items: string[] }>) {
-  const row = [...items, ...items, ...items, ...items];
-  return (
-    <div className="relative w-full overflow-hidden py-4 select-none border-t border-white/10">
-      {/* Left fade */}
-      <div
-        className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
-        style={{
-          background: "linear-gradient(to right, var(--background), transparent)",
-        }}
-      />
-      {/* Right fade */}
-      <div
-        className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
-        style={{
-          background: "linear-gradient(to left, var(--background), transparent)",
-        }}
-      />
-      
-      <motion.div
-        className="flex gap-8 whitespace-nowrap w-max"
-        animate={{ x: ["0%", "-25%"] }}
-        transition={{ duration: 18, ease: "linear", repeat: Infinity }}
-      >
-        {row.map((item, i) => (
-          <span
-            key={`${item}-${i}`}
-            className="flex items-center gap-2 text-[13px] font-mono tracking-wide uppercase"
-            style={{ color: "rgba(255,255,255,0.55)" }}
-          >
-            <span
-              className="inline-block w-1.5 h-1.5 rounded-full border"
-              style={{ borderColor: "var(--accent)", background: "transparent" }}
-            />
-            {item}
-          </span>
-        ))}
-      </motion.div>
-    </div>
-  );
-}
-
-/* ──────────────────────────────────────────────
-   Other‑project card (bottom section)
-   ────────────────────────────────────────────── */
-function ProjectCard({ project, index }: Readonly<{ project: Project; index: number }>) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.55, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-    >
-      <Link href={`/projects/${project.slug}`} className="block group">
-        <motion.div
-          whileHover={{ y: -4 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className="relative rounded-2xl border p-6 overflow-hidden transition-colors duration-300"
-          style={{
-            borderColor: "rgba(0,0,0,0.1)",
-            background: "rgba(0,0,0,0.02)",
-          }}
-        >
-          {/* hover glow */}
-          <div
-            className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-            style={{
-              background: "radial-gradient(circle at 50% 0%, var(--accent-glow), transparent 70%)",
-            }}
-          />
-
-          <div className="relative z-10">
-            <div className="flex items-center justify-between mb-3">
-              <h4
-                className="text-lg font-bold"
-                style={{ fontFamily: "var(--font-display)", color: "#111" }}
-              >
-                {project.name}
-              </h4>
-              <span
-                className="text-[11px] font-mono px-2.5 py-1 rounded-full"
-                style={{
-                  background: "rgba(0,0,0,0.06)",
-                  color: "rgba(0,0,0,0.5)",
-                }}
-              >
-                {project.status}
-              </span>
-            </div>
-            <p
-              className="text-sm leading-relaxed line-clamp-2"
-              style={{ color: "rgba(0,0,0,0.55)" }}
-            >
-              {project.description}
-            </p>
-
-            {/* tech preview */}
-            <div className="flex flex-wrap gap-1.5 mt-4">
-              {project.stack.slice(0, 4).map((t) => (
-                <span
-                  key={t}
-                  className="px-2 py-0.5 text-[10px] font-mono rounded-md"
-                  style={{
-                    background: "rgba(0,0,0,0.05)",
-                    color: "rgba(0,0,0,0.45)",
-                    border: "1px solid rgba(0,0,0,0.08)",
-                  }}
-                >
-                  {t}
-                </span>
-              ))}
-              {project.stack.length > 4 && (
-                <span
-                  className="text-[10px] font-mono px-2 py-0.5"
-                  style={{ color: "rgba(0,0,0,0.35)" }}
-                >
-                  +{project.stack.length - 4}
-                </span>
-              )}
-            </div>
-          </div>
-        </motion.div>
-      </Link>
-    </motion.div>
-  );
-}
-
-/* ──────────────────────────────────────────────
-   Section heading helper
-   ────────────────────────────────────────────── */
-function SectionHeading({
-  icon: Icon,
-  children,
-  delay = 0,
-}: Readonly<{
-  icon: typeof Lightbulb;
-  children: React.ReactNode;
-  delay?: number;
-}>) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -16 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-    >
-      <div
-        className="inline-flex items-center gap-2.5 px-4 py-2 rounded-lg mb-6"
-        style={{
-          background: "transparent",
-          border: "1.5px solid #111",
-        }}
-      >
-        <Icon size={16} style={{ color: "#111" }} strokeWidth={2.2} />
-        <h2
-          className="font-bold uppercase tracking-wider"
-          style={{ fontFamily: "var(--font-display)", color: "#111" }}
-        >
-          {children}
-        </h2>
-      </div>
-    </motion.div>
-  );
 }
 
 /* ══════════════════════════════════════════════
@@ -195,9 +29,8 @@ export function CaseStudyPage({ project }: Readonly<CaseStudyPageProps>) {
   const otherProjects = resumeData.projects.filter((p) => p.slug !== project.slug);
 
   const marqueeItems = [
-    project.status,
-    ...project.stack.slice(0, 5),
-    project.status,
+    ...project.stack,
+    project.status
   ];
 
   return (
