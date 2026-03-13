@@ -29,7 +29,7 @@ export const resumeData = {
         {
           name: "Customer Benefits Platform",
           role: "Full Stack Developer",
-          period: "Apr 2023 - Present",
+          period: "May 2025 - Present",
           description: "Multi language, multi locale benefits platform with both user facing and admin interfaces.",
           achievements: [
             "Modernized the frontend architecture with Angular and migrated backend services to .NET 7; embedded Power BI dashboards to improve analytics UX",
@@ -42,7 +42,7 @@ export const resumeData = {
         {
           name: "Warehouse Management System",
           role: "Full Stack Developer",
-          period: "Apr 2023 - Present",
+          period: "Apr 2023 - May 2025",
           description: "Enterprise WMS implementing inventory, inbound/outbound, trips, and warehouse management workflows using DDD and Event Sourcing.",
           achievements: [
             "Implemented domain driven features and event sourced flows for complex warehouse logic",
@@ -130,7 +130,7 @@ export const resumeData = {
       liveUrl: "https://alinbalog.com",
       status: "Live",
       description: "Personal resume/portfolio built as a single-page Next.js app — an experiment in motion using Framer Motion and Lenis.",
-      stack: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion", "Lenis"],
+      stack: ["React", "Next.js", "TypeScript", "TailwindCSS", "Framer Motion", "Lenis"],
       story: "I always wanted to experiment with Framer Motion and Lenis, so I used my own resume as the perfect playground. Instead of building a static portfolio, I leaned into motion, transitions and layout rhythm to make the site feel intentional and alive. It became both a personal brand piece and a practical exercise in visual design, interaction design and frontend polish.",
       caseStudy: {
         purpose: `Design a polished, motion-driven resume that highlights experience and craftsmanship. This case study explores building a small design system, balancing expressive motion with accessibility, and composing reusable components that remain performant. I used Framer Motion and Lenis to create smooth, intentional transitions that enhance narrative flow without distracting from content.`,
@@ -150,7 +150,7 @@ export const resumeData = {
       liveUrl: undefined,
       status: "Work in Progress",
       description: "Work-in-progress mobile-first app for collaborative grocery lists (hubs/events).",
-      stack: ["Next.js", "TypeScript", "Tailwind", ".NET (EF Core)", "PostgreSQL", "Docker"],
+      stack: ["React", "Next.js", "TypeScript", "Tailwind", ".NET (EF Core)", "PostgreSQL", "Docker"],
       story: "Sakosha is my current deeper product/building exercise: a shared grocery app centered around collaborative spaces, invite flows and clear role-based actions. I wanted something bigger than a UI experiment — something that forced me to think about product boundaries, architecture, auth, data modelling and deployability from the beginning. It is still in progress, but that is part of the value: it shows how I think when a project is still evolving, not only when it is already polished.",
       caseStudy: {
         purpose: `Collaborative grocery planning with invite links, roles and list lifecycle (WIP). The aim is to enable small groups to coordinate shopping around shared events and hubs with clear role-based permissions and minimal friction. This involves designing simple invite flows, resilient offline-friendly list syncing, and a domain model that keeps lists and spaces composable as the product grows.`,

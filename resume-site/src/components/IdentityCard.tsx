@@ -117,8 +117,8 @@ export function IdentityCard() {
             </motion.p>
             
             <div className="pt-5">
-                 <motion.a
-                    href="/resume.pdf"
+                  <motion.a
+                    href="/Balog_Alin_Resume.pdf"
                     download="Alin_Balog_Resume.pdf"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

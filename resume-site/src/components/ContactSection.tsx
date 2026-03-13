@@ -256,7 +256,7 @@ export function ContactSection() {
           </div>
           
           <motion.a
-            href="/resume.pdf"
+            href="/Balog_Alin_Resume.pdf"
             download="Alin_Balog_Resume.pdf"
             whileTap={{ scale: 0.97 }}
             className="w-full group/btn relative flex items-center justify-center gap-3 overflow-hidden rounded-xl py-3.5 px-7 font-semibold text-sm cursor-pointer border border-zinc-700 text-zinc-400 hover:text-[var(--foreground)] hover:border-zinc-500 transition-colors duration-300"
