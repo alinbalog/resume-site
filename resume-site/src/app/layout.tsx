@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Syne, Space_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -38,6 +40,8 @@ export default function RootLayout({
       >
         <div className="noise-overlay" />
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
